@@ -7,5 +7,7 @@ public class BaseItem implements Drop {
 
     public BaseItem (String name) { this.name = name; }
 
-    public Drop open() { return this; }
+    public BaseItem open() {
+        return this;
+    }
 }

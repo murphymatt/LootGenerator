@@ -15,16 +15,20 @@ public class TreasureClass implements Drop {
         this.drop3 = drop3;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public Drop open() {
         Random random = new Random();
         int dropVal = random.nextInt() % 3;
         switch (dropVal) {
             case 0:
-                return drop1;
+                return drop1.open();
             case 1:
-                return drop2;
+                return drop2.open();
             case 2:
-                return drop3;
+                return drop3.open();
             default:
                 return null;
         }

@@ -22,8 +22,9 @@ public class Game {
             System.out.print("\n\n\n");
 
             // generate item dropped
+            TreasureClass treasureClass = LootGenerator.fetchTreasureClass(monster);
             Affix affix = LootGenerator.generateAffix();
-            BaseItem baseItem = LootGenerator.generateBaseItem();
+            BaseItem baseItem = LootGenerator.generateBaseItem(treasureClass);
             BaseStats baseStats = LootGenerator.generateBaseStats();
 
             System.out.println(affix + " " + baseItem);
