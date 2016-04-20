@@ -21,7 +21,6 @@ public class BaseItem {
 
     public int getStat() {
         Random rand = new Random();
-        int randStat = rand.nextInt(maxStat - minStat) + minStat;
-        return randStat;
+        return rand.nextInt(maxStat - minStat) + minStat;
     }
 }

@@ -15,11 +15,6 @@ public class TreasureClass {
         this.drop3 = drop3;
     }
 
-    // getters
-    public String getName() {
-        return name;
-    }
-
     public String open() {
         Random random = new Random();
         int dropVal = random.nextInt(3);

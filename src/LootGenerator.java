@@ -80,7 +80,7 @@ public class LootGenerator {
 
 		Scanner affixReader;
 
-		if (whichAffix == true) {
+		if (whichAffix) {
 			// create reader for prefix file
 			affixReader = new Scanner(new File("data/large/MagicPrefix.txt"));
 		} else {
@@ -92,9 +92,8 @@ public class LootGenerator {
 		String[] parsedAffix = getRandomData(affixReader);
 		affixReader.close();
 
-		Affix affix = new Affix(parsedAffix[0], parsedAffix[1],
+		return new Affix(parsedAffix[0], parsedAffix[1],
 				Integer.parseInt(parsedAffix[2]), Integer.parseInt(parsedAffix[3]));
-		return affix;
 	}
 
 	private static String[] getRandomData(Scanner fileReader) {

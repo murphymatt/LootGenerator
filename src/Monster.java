@@ -18,14 +18,6 @@ public class Monster {
         return monsterClass;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public int getLevel() {
-        return level;
-    }
-
     public String getTreasureClassName() {
         return treasureClassName;
     }

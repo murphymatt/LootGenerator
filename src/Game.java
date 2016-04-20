@@ -20,7 +20,7 @@ public class Game {
             System.out.println("Fighting " + monster.getMonsterClass() + "...");
             System.out.println("You have slain " + monster.getMonsterClass() + "!");
             System.out.println(monster.getMonsterClass() + " dropped:");
-            System.out.print("\n\n\n");
+            System.out.print("\n\n");
 
             // generate item dropped
             TreasureClass treasureClass = LootGenerator.fetchTreasureClass(monster.getTreasureClassName());
@@ -61,12 +61,12 @@ public class Game {
                 System.out.println(suffix.chooseStat() + " " + suffix.getStatBoost());
             }
 
-            System.out.print("\n\n\n");
+            System.out.print("\n\n");
 
             // prompt to continue
             System.out.print("Fight again [y/n]?  ");
             ans = in.nextLine().toLowerCase();
-
+            System.out.print("\n\n\n");
         } while (ans.equals("y"));
     }
 }
