@@ -1,5 +1,6 @@
 
 import java.io.FileNotFoundException;
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -16,19 +17,50 @@ public class Game {
             // generate monster
             Monster monster = LootGenerator.pickMonster();
 
-            System.out.println("Fighting " + monster + "...");
-            System.out.println("You have slain " + monster + "!");
-            System.out.println(monster + " dropped:");
+            System.out.println("Fighting " + monster.getMonsterClass() + "...");
+            System.out.println("You have slain " + monster.getMonsterClass() + "!");
+            System.out.println(monster.getMonsterClass() + " dropped:");
             System.out.print("\n\n\n");
 
             // generate item dropped
-            TreasureClass treasureClass = LootGenerator.fetchTreasureClass(monster);
-            Affix affix = LootGenerator.generateAffix();
+            TreasureClass treasureClass = LootGenerator.fetchTreasureClass(monster.getTreasureClassName());
             BaseItem baseItem = LootGenerator.generateBaseItem(treasureClass);
-            BaseStats baseStats = LootGenerator.generateBaseStats();
+            int baseStat = LootGenerator.generateBaseStats(baseItem);
 
-            System.out.println(affix + " " + baseItem);
-            System.out.println(baseStats);
+            // print prefix if appropriate
+            Affix prefix;
+            Random rand = new Random();
+            int affixProb = rand.nextInt(2);
+            if (affixProb == 0) {
+                prefix = LootGenerator.generateAffix(true);
+                System.out.print(prefix.getName() + " ");
+            } else {
+                prefix = null;
+            }
+
+            System.out.print(baseItem.getName() + " ");
+
+            // print suffix if appropriate
+            Affix suffix;
+            affixProb = rand.nextInt(2);
+            if (affixProb == 0) {
+                suffix = LootGenerator.generateAffix(false);
+                System.out.print(suffix.getName());
+            } else {
+                suffix = null;
+            }
+
+            System.out.println();
+            System.out.println("Defense: " + baseStat);
+
+            // print affix stats if available
+            if (prefix != null) {
+                System.out.println(prefix.chooseStat() + " " + prefix.getStatBoost());
+            }
+            if (suffix != null) {
+                System.out.println(suffix.chooseStat() + " " + suffix.getStatBoost());
+            }
+
             System.out.print("\n\n\n");
 
             // prompt to continue

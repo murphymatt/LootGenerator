@@ -5,13 +5,13 @@ public class Monster {
 
     private String monsterClass, type;
     private int level;
-    private TreasureClass treasureClass;
+    private String treasureClassName;
 
-    public Monster(String monsterClass, String type, int level, TreasureClass treasureClass) {
+    public Monster(String monsterClass, String type, int level, String treasureClassName) {
         this.monsterClass = monsterClass;
         this.type = type;
         this.level = level;
-        this.treasureClass = treasureClass;
+        this.treasureClassName = treasureClassName;
     }
 
     public String getMonsterClass() {
@@ -26,7 +26,7 @@ public class Monster {
         return level;
     }
 
-    public TreasureClass getTreasureClass() {
-        return treasureClass;
+    public String getTreasureClassName() {
+        return treasureClassName;
     }
 }

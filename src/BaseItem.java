@@ -1,13 +1,27 @@
+import java.util.Random;
+
 /**
  * Created by mattmurphy on 4/17/16.
  */
-public class BaseItem implements Drop {
+public class BaseItem {
 
     private String name;
+    private int minStat, maxStat;
 
-    public BaseItem (String name) { this.name = name; }
+    public BaseItem(String name, int minStat, int maxStat) {
+        this.name = name;
+        this.minStat = minStat;
+        this.maxStat = maxStat;
+    }
 
-    public BaseItem open() {
-        return this;
+    // returns name
+    public String getName() {
+        return name;
+    }
+
+    public int getStat() {
+        Random rand = new Random();
+        int randStat = rand.nextInt(maxStat - minStat) + minStat;
+        return randStat;
     }
 }
