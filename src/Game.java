@@ -1,6 +1,5 @@
 
 import java.io.FileNotFoundException;
-import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -10,44 +9,37 @@ public class Game {
 
     public static void main(String[] args) throws FileNotFoundException {
 
+        // variable declarations
         Scanner in = new Scanner(System.in);
-        String ans;
+        String ans = "y";
+        int baseStat;
+        TreasureClass treasureClass;
+        BaseItem baseItem;
+        Affix prefix, suffix;
 
-        do {
-            // generate monster
+        while (ans.equals("y")) {
+
+            // generate and fight monster
             Monster monster = LootGenerator.pickMonster();
-
             System.out.println("Fighting " + monster.getMonsterClass() + "...");
             System.out.println("You have slain " + monster.getMonsterClass() + "!");
             System.out.println(monster.getMonsterClass() + " dropped:");
             System.out.print("\n\n");
 
             // generate item dropped
-            TreasureClass treasureClass = LootGenerator.fetchTreasureClass(monster.getTreasureClassName());
-            BaseItem baseItem = LootGenerator.generateBaseItem(treasureClass);
-            int baseStat = LootGenerator.generateBaseStats(baseItem);
+            treasureClass = LootGenerator.fetchTreasureClass(monster.getTreasureClassName());
+            baseItem = LootGenerator.generateBaseItem(treasureClass);
+            baseStat = LootGenerator.generateBaseStats(baseItem);
 
-            // print prefix if appropriate
-            Affix prefix;
-            Random rand = new Random();
-            int affixProb = rand.nextInt(2);
-            if (affixProb == 0) {
-                prefix = LootGenerator.generateAffix(true);
+            // generate possible affixes and print full item name
+            prefix = LootGenerator.setAffix(true);
+            if (prefix != null) {
                 System.out.print(prefix.getName() + " ");
-            } else {
-                prefix = null;
             }
-
             System.out.print(baseItem.getName() + " ");
-
-            // print suffix if appropriate
-            Affix suffix;
-            affixProb = rand.nextInt(2);
-            if (affixProb == 0) {
-                suffix = LootGenerator.generateAffix(false);
-                System.out.print(suffix.getName());
-            } else {
-                suffix = null;
+            suffix = LootGenerator.setAffix(false);
+            if (suffix != null) {
+                System.out.println(suffix.getName());
             }
 
             System.out.println();
@@ -66,7 +58,17 @@ public class Game {
             // prompt to continue
             System.out.print("Fight again [y/n]?  ");
             ans = in.nextLine().toLowerCase();
+            while (!ans.equals("y") && !ans.equals("n")) {
+                System.out.println("Sorry, you must respond with \"y\" or \"n\".");
+                System.out.print("Fight again [y/n]?  ");
+                ans = in.nextLine().toLowerCase();
+            }
+            if (ans.equals("n")) {
+                break;
+            }
             System.out.print("\n\n\n");
-        } while (ans.equals("y"));
+        }
+
+        in.close();
     }
 }

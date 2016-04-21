@@ -5,9 +5,11 @@ import java.util.Random;
  */
 public class TreasureClass {
 
+    // fields
     private String name;
     private String drop1, drop2, drop3;
 
+    // constructor
     public TreasureClass(String name, String drop1, String drop2, String drop3) {
         this.name = name;
         this.drop1 = drop1;
@@ -15,6 +17,13 @@ public class TreasureClass {
         this.drop3 = drop3;
     }
 
+    // methods
+
+    /*
+     *  chooses one drop name at random
+     *
+     *  @return drop    randomly selected drop
+     */
     public String open() {
         Random random = new Random();
         int dropVal = random.nextInt(3);

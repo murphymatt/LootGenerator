@@ -5,9 +5,11 @@ import java.util.Random;
  */
 public class Affix {
 
+    // fields
     private String name, statBoost;
     private int minStat, maxStat;
 
+    // constructor
     public Affix(String name, String statBoost, int minStat, int maxStat) {
         this.name = name;
         this.statBoost = statBoost;
@@ -15,6 +17,7 @@ public class Affix {
         this.maxStat = maxStat;
     }
 
+    // methods
     public String getName() {
         return name;
     }
@@ -23,6 +26,11 @@ public class Affix {
         return statBoost;
     }
 
+    /*
+     * chooses a random stat between vals of minStat and maxStat
+     *
+     * @return  randomStat
+     */
     public int chooseStat() {
         if (minStat == maxStat) {
             return minStat;

@@ -3,10 +3,12 @@
  */
 public class Monster {
 
+    // fields
     private String monsterClass, type;
     private int level;
     private String treasureClassName;
 
+    // constructor
     public Monster(String monsterClass, String type, int level, String treasureClassName) {
         this.monsterClass = monsterClass;
         this.type = type;
@@ -14,6 +16,7 @@ public class Monster {
         this.treasureClassName = treasureClassName;
     }
 
+    // methods
     public String getMonsterClass() {
         return monsterClass;
     }
